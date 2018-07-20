@@ -18,6 +18,10 @@ class App extends Component {
           <h1 id="header">todos</h1>
         </header>  
           <Main />
+        <div className="text-info">
+            <p>Double-click to edit a todo</p>
+            <p>Created by phamhuy</p>
+        </div>
       </div>
     );
   }

@@ -17,4 +17,9 @@ body {
 header {
   margin: 70px;
 }
-
+.text-info {
+  margin: 65px 0;
+  color: #bfbfbf;
+  font-size: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}

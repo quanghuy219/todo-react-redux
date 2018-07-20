@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as Actions from '../../actions';
+import '../Footer/Footer.css';
 
 class Footer extends Component {
     constructor(props) {
