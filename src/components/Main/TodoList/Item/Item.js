@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './Task.css';
-import * as Actions from "../../actions";
+import './Item.css';
+import * as Actions from "../../../../actions";
 import {connect} from 'react-redux';
 
-class Task extends Component {
+class Item extends Component {
     
     constructor(props) {
         super(props);
@@ -13,10 +13,12 @@ class Task extends Component {
         }
     }
 
+    // Set todo.completed = !todo.completed on checkbox change
     handleCheckbox = (e) => { 
         this.props.toggleTodo(this.props.todo.id);
     }
 
+    // Delete an item
     handleClickDeleteBtn = () => {
         this.props.deleteTodo(this.props.todo.id);
     }
@@ -27,6 +29,7 @@ class Task extends Component {
         })
     }
 
+
     handleChange = (e) => {
         this.setState({
             text: e.target.value
@@ -34,6 +37,7 @@ class Task extends Component {
         
     }
 
+    // Edit text in an item in todos state
     saveChanges = (e) => {
         this.setState({
             editing: false,
@@ -64,6 +68,7 @@ class Task extends Component {
         return (
             <li className={this.state.editing ? "editing" : ""} >
                {
+                   // state.editing = true : show input
                    this.state.editing ? editInput : listTodo
                }
             </li>
@@ -85,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null,mapDispatchToProps)(Task);;
+export default connect(null,mapDispatchToProps)(Item);;

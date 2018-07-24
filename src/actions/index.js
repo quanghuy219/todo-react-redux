@@ -1,3 +1,5 @@
+//Declare types of actions and payload passed to reducer 
+
 let nextTodoId = 0
 
 export const addTodo = text => ({

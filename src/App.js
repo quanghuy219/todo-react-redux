@@ -4,24 +4,20 @@ import './App.css';
 
 import { connect } from 'react-redux';
 import Main from './components/Main/Main.js'
+import Footer from './components/Footer/Footer';
 class App extends Component {
 
-  componentDidMount() {
-    // call default function to display redux operation
-    // this.props.defaultFunction();
-  }
 
   render() {
     return (
       <div className="App">
         <header>
           <h1 id="header">todos</h1>
-        </header>  
+        </header> 
+
           <Main />
-        <div className="text-info">
-            <p>Double-click to edit a todo</p>
-            <p>Created by phamhuy</p>
-        </div>
+
+          <Footer />
       </div>
     );
   }
