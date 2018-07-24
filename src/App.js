@@ -5,6 +5,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import Main from './components/Main/Main.js'
 import Footer from './components/Footer/Footer';
+import FormInput from './components/FormInput/FormInput';
 class App extends Component {
 
 
@@ -15,7 +16,11 @@ class App extends Component {
           <h1 id="header">todos</h1>
         </header> 
 
-          <Main />
+          <div className="main">
+            <FormInput />
+
+            <Main />
+          </div>
 
           <Footer />
       </div>

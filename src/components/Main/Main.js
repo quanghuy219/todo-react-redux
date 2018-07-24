@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Main.css';
 import TodoList from './TodoList/TodoList';
 import FooterFilter from './FooterFilter/FooterFilter.js';
-import FormInput from './FormInput/FormInput';
 
 class Main extends Component {
     constructor(props) {
@@ -11,16 +10,11 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="main">
-
-                    <FormInput />
-
+                <div className="main-section">
                     <TodoList />
 
                     <FooterFilter />
                 </div>
-            </div>
         )
     }
 }
