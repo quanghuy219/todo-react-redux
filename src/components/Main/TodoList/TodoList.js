@@ -1,11 +1,28 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Item from "./Item/Item";
 import * as Actions from '../../../actions';
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
+    }
+
+    // Update view base on  url param $(view)
+    componentWillUpdate(nextProps) {
+        const view = nextProps.match.params.view || "all"
+
+        switch(view) {
+            case "all":
+                return this.props.setVisibilityFilter("SHOW_ALL");
+            case "active":
+                return this.props.setVisibilityFilter("SHOW_ACTIVE");
+            case "completed":
+                return this.props.setVisibilityFilter("SHOW_COMPLETED");
+            default: 
+                return;
+        }
     }
 
     // Change all todo.completed to true when checkbox is checked, false when checkbox is unchecked
@@ -56,7 +73,7 @@ const getVisibleTodos = (todos, filter) => {
         return todos
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state,ownProps) => {
     return {
       todos: getVisibleTodos(state.todos, state.visibilityFilter)
     }
@@ -71,6 +88,9 @@ const mapDispatchToProps = (dispatch) => {
         // Uncheck all
         untoggleAll: () => {
             dispatch(Actions.untoggleAll())
+        },
+        setVisibilityFilter:(filter) => {
+            dispatch(Actions.setVisibilityFilter(filter))
         }
     }
 }

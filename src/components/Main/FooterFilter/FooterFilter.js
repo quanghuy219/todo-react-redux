@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as Actions from '../../../actions';
 import './FooterFilter.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Footer extends Component {
     constructor(props) {
@@ -20,38 +21,26 @@ class Footer extends Component {
             display: "none"
         }
         return (
-            <footer className="footer" style={this.props.todos.length ? show : hide}>
-            <p className="todo-count">
-                {
-                   this.props.todos.filter(todo => !todo.completed).length
-                } items left
-            </p>
-            <ul>
-                <li><a href="#" className={(this.props.visibilityFilter == "SHOW_ALL") ? "selected" : ""} onClick={
-                    () => {
-                        this.props.setVisibilityFilter("SHOW_ALL")
-                    }
-                }>
-                All
-                </a></li>
-                <li><a href="#" className={(this.props.visibilityFilter == "SHOW_ACTIVE") ? "selected" : ""} onClick={
-                    () => {
-                        this.props.setVisibilityFilter("SHOW_ACTIVE")
-                    }
-                }>
-                Active
-                </a></li>
-                <li><a href="#" className={(this.props.visibilityFilter == "SHOW_COMPLETED") ? "selected" : ""} onClick={
-                    () => {
-                        this.props.setVisibilityFilter("SHOW_COMPLETED")
-                    } 
-                }>
-                Completed
-                </a></li>
-            </ul>
+                <footer className="footer" style={this.props.todos.length ? show : hide}>
+                    <p className="todo-count">
+                        {
+                        this.props.todos.filter(todo => !todo.completed).length
+                        } items left
+                    </p>
+                    <ul>
+                        <li><Link to="/" className={(this.props.visibilityFilter == "SHOW_ALL") ? "selected" : ""}>
+                        All
+                        </Link></li>
+                        <li><Link to="/active" className={(this.props.visibilityFilter == "SHOW_ACTIVE") ? "selected" : ""} >
+                        Active
+                        </Link></li>
+                        <li><Link to="/completed" className={(this.props.visibilityFilter == "SHOW_COMPLETED") ? "selected" : ""} >
+                        Completed
+                        </Link></li>
+                    </ul>
 
-            <button href="#" className="clear"  onClick={this.triggerClearComplete} disabled={ this.props.todos.filter(todo => todo.completed).length ? false : true}>Clear completed</button>
-        </footer> 
+                    <button href="#" className="clear"  onClick={this.triggerClearComplete} disabled={ this.props.todos.filter(todo => todo.completed).length ? false : true}>Clear completed</button>
+                </footer>
         )
     }
 }
@@ -64,9 +53,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setVisibilityFilter: (filter) => {
-            dispatch(Actions.setVisibilityFilter(filter))
-        },
         clearCompleted: () => {
             dispatch(Actions.clearCompleted())
         }

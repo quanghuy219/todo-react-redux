@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Main.css';
 import TodoList from './TodoList/TodoList';
 import FooterFilter from './FooterFilter/FooterFilter.js';
+import {BrowserRouter as Router ,Route ,Link} from 'react-router-dom';
 
 class Main extends Component {
     constructor(props) {
@@ -10,11 +11,15 @@ class Main extends Component {
 
     render() {
         return (
+            <Router>
                 <div className="main-section">
-                    <TodoList />
+                    
+                        <Route path='/:view?' component={TodoList}/>
 
-                    <FooterFilter />
+                        <FooterFilter />
+                    
                 </div>
+            </Router>
         )
     }
 }

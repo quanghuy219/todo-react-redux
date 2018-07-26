@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Main from './components/Main/Main.js'
 import Footer from './components/Footer/Footer';
 import FormInput from './components/FormInput/FormInput';
+
 class App extends Component {
-
-
   render() {
     return (
       <div className="App">
@@ -18,7 +17,6 @@ class App extends Component {
 
           <div className="main">
             <FormInput />
-
             <Main />
           </div>
 

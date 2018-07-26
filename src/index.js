@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import reducers from './reducers';
 import ReduxPromise from 'redux-promise';
+import {BrowserRouter as Router, Route, HashRouter} from 'react-router-dom';
 
 const store = createStore(
     reducers,
@@ -16,8 +17,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
+    
     <Provider store={store}>
-        <App />
+        <Router>
+            <App />
+        </Router>
     </Provider>
+
     , document.getElementById('root'));
 registerServiceWorker();
