@@ -9,6 +9,8 @@ const todos = (state = [], action) => {
                 completed: false
             }
             ]
+        case 'ADD_TODOS':
+            return [...state, ...action.todos]
 
         case "EDIT_TODO": 
             return state.map(todo => (todo.id == action.id) ? {...todo, text: action.text} : todo);

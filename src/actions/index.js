@@ -8,6 +8,17 @@ export const addTodo = text => ({
   text
 });
 
+export const addTodos = (todos) => {
+  
+  // update nextTodoId
+  nextTodoId = todos.reduce( (max, todo) => Math.max(max,todo.id) + 1, 0)
+
+  return {
+    type: "ADD_TODOS",
+    todos: todos
+  }
+}
+
 export const editTodo = (id, text) => ({
     type: "EDIT_TODO",
     id,

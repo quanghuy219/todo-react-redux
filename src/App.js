@@ -6,8 +6,22 @@ import Main from './components/Main/Main.js'
 import Footer from './components/Footer/Footer';
 import FormInput from './components/FormInput/FormInput';
 import {BrowserRouter as Router ,Route} from 'react-router-dom';
+import * as Actions from './actions';
+import StorageService from './utils/StorageService';
 
 class App extends Component {
+
+  // Load data from local storage
+  componentDidMount() {
+      const todos = StorageService.get("todos") || [];
+      this.props.addTodos(todos);
+  }
+
+  // Save changes in local storage
+  componentDidUpdate() {
+    StorageService.set("todos", this.props.todos)
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,10 +41,16 @@ class App extends Component {
 }
 // export default App;
 // function to convert the global state obtained from redux to local props
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     todos: state.todos
   };
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodos: (todos) => dispatch(Actions.addTodos(todos))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
