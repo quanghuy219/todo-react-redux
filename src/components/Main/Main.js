@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Main.css';
 import TodoList from './TodoList/TodoList';
 import FooterFilter from './FooterFilter/FooterFilter.js';
-import {BrowserRouter as Router ,Route ,Link} from 'react-router-dom';
+import {BrowserRouter as Router ,Route ,Redirect} from 'react-router-dom';
 
 class Main extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class Main extends Component {
                 <div className="main-section">
                     
                         <Route path='/:view?' component={TodoList}/>
-
                         <FooterFilter />
                     
                 </div>

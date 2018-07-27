@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import Item from "./Item/Item";
 import * as Actions from '../../../actions';
 
@@ -11,14 +10,14 @@ class TodoList extends Component {
 
     // Update view base on  url param $(view)
     componentWillUpdate(nextProps) {
-        const view = nextProps.match.params.view || "all"
+        const view = nextProps.location.hash || "#/"
 
         switch(view) {
-            case "all":
+            case "#/":
                 return this.props.setVisibilityFilter("SHOW_ALL");
-            case "active":
+            case "#/active":
                 return this.props.setVisibilityFilter("SHOW_ACTIVE");
-            case "completed":
+            case "#/completed":
                 return this.props.setVisibilityFilter("SHOW_COMPLETED");
             default: 
                 return;
@@ -32,7 +31,20 @@ class TodoList extends Component {
         } else {
             this.props.untoggleAll()    // Uncheck all
         }
-    } 
+    }
+
+    // Show todos list arcording to reducer visibilityFilter
+    getVisibleTodos = (filter) => {
+        switch (filter) {
+          case 'SHOW_COMPLETED':
+            return this.props.todos.filter(t => t.completed)
+          case 'SHOW_ACTIVE':
+            return this.props.todos.filter(t => !t.completed)
+          case 'SHOW_ALL':
+          default:
+            return this.props.todos
+        }
+    }
 
 
     render() {
@@ -52,7 +64,7 @@ class TodoList extends Component {
                         }/>      
                 <ul className="todo-list">
                 {
-                    this.props.todos.map( todo => {
+                    this.getVisibleTodos(this.props.filter).map( todo => {
                         return <Item key={todo.id} todo={todo} />
                     })                
                 }  
@@ -62,20 +74,11 @@ class TodoList extends Component {
     }
 }
 
-const getVisibleTodos = (todos, filter) => {
-    switch (filter) {
-      case 'SHOW_COMPLETED':
-        return todos.filter(t => t.completed)
-      case 'SHOW_ACTIVE':
-        return todos.filter(t => !t.completed)
-      case 'SHOW_ALL':
-      default:
-        return todos
-    }
-}
-const mapStateToProps = (state,ownProps) => {
+
+const mapStateToProps = (state) => {
     return {
-      todos: getVisibleTodos(state.todos, state.visibilityFilter)
+      todos: state.todos,
+      filter: state.visibilityFilter
     }
 }
 

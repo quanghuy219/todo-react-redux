@@ -19,9 +19,10 @@ const store = createStore(
 ReactDOM.render(
     
     <Provider store={store}>
-        <Router>
+        {/* HashRouter to avoid reloading page when enter url manually */}
+        <HashRouter>
             <App />
-        </Router>
+        </HashRouter>
     </Provider>
 
     , document.getElementById('root'));
