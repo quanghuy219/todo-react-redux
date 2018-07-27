@@ -43,7 +43,9 @@ class Item extends Component {
             editing: false,
         })
 
-        this.props.editTodo(this.props.todo.id, this.state.text)
+        if(!this.state.text) this.handleClickDeleteBtn()    // delete if empty
+        
+        else this.props.editTodo(this.props.todo.id, this.state.text)
     }
 
     handleKeyDown = (e) => {
