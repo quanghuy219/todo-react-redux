@@ -7,9 +7,11 @@ import {BrowserRouter as Router ,Route ,Redirect} from 'react-router-dom';
 class Main extends Component {
     constructor(props) {
         super(props);
+        
     }
 
     render() {
+        console.log(this.props)
         return (
             <Router>
                 <div className="main-section">

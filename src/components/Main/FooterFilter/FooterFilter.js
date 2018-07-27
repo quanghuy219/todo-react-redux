@@ -28,13 +28,13 @@ class Footer extends Component {
                         } items left
                     </p>
                     <ul>
-                        <li><Link to="/#/" className={(this.props.visibilityFilter == "SHOW_ALL") ? "selected" : ""}>
+                        <li><Link to="#/" className={(this.props.visibilityFilter == "SHOW_ALL") ? "selected" : ""}>
                         All
                         </Link></li>
-                        <li><Link to="/#/active" className={(this.props.visibilityFilter == "SHOW_ACTIVE") ? "selected" : ""} >
+                        <li><Link to="#/active" className={(this.props.visibilityFilter == "SHOW_ACTIVE") ? "selected" : ""} >
                         Active
                         </Link></li>
-                        <li><Link to="/#/completed" className={(this.props.visibilityFilter == "SHOW_COMPLETED") ? "selected" : ""} >
+                        <li><Link to="#/completed" className={(this.props.visibilityFilter == "SHOW_COMPLETED") ? "selected" : ""} >
                         Completed
                         </Link></li>
                     </ul>

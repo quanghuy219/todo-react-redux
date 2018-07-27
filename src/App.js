@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Main from './components/Main/Main.js'
 import Footer from './components/Footer/Footer';
 import FormInput from './components/FormInput/FormInput';
+import {BrowserRouter as Router ,Route} from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -16,7 +17,6 @@ class App extends Component {
 
           <div className="main">
             <FormInput />
-
             <Main />
           </div>
 
